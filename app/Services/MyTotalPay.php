@@ -18,7 +18,12 @@ public function getCheckOutUrl(){
     $data =  $this->options;
     $url = $this->url;
    $client = new Client();
-   $response = $client->request('POST',$url,$data);
+   $response = $client->request('POST',$url,[
+    'body'=> json_encode($data),
+    'headers' => [
+        'Content-Type' => 'application/json',
+    ],
+   ]);
     
    return json_decode($response->getBody()->getContents());
 }

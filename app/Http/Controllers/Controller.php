@@ -19,7 +19,7 @@ class Controller extends BaseController
             'multipart' => [
                 [
                     'name'     => 'field_name',
-                    'contents' => 'abc'
+                    'contents' => route('success-payment')
                 ],
                 [
                     'name'     => 'file_name',
@@ -36,7 +36,7 @@ class Controller extends BaseController
             ]
         ]) ;
         $res = $check->getCheckOutUrl();
-        dd($res);
+      return redirect( $res->json->multipart[0]->contents);
     }
 
 
